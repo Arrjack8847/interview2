@@ -51,6 +51,7 @@ if (!isSupabaseConfigured) {
 const allowedOrigins = [
   FRONTEND_URL,
   normalizeOrigin(process.env.CLIENT_URL || ""),
+  "https://interview2-alpha.vercel.app",
   "http://localhost:8080",
   "http://localhost:3000",
   "http://localhost:5173",
@@ -89,7 +90,9 @@ app.use(
 
       return callback(new Error(`CORS blocked for origin: ${origin}`));
     },
-    credentials: true,
+        credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
 
